@@ -1,3 +1,4 @@
+# import os
 from django.utils.timezone import timedelta
 import pytz
 from pathlib import Path
@@ -7,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-k@vh#dx&%l962#oyj34w3^+#47f^burd%4x26ak2(h=lxs(s2i"
 FERNET_KEY = "RWqdn6hhVjsKBqvuzDo7Z16uhI-oXElWn1W0nfipo6E="
-
+# SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
