@@ -182,6 +182,7 @@ class MenuItemViewSet(ModelViewSet):
         return self.queryset
 
 
+## this should work, no ?
 class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     authentication_classes = [ClientJWTAuthentication]

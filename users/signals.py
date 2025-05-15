@@ -36,4 +36,4 @@ def create_custom_permissions(sender, **kwargs):
 def create_user_credits(sender, instance, created, **kwargs):
     if created:
         if hasattr(instance, "is_deliveryman") and instance.is_deliveryman:
-            Credits.objects.create(owner=instance)
+            Credits.objects.create(owner=instance, amount=1000.00)

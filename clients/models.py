@@ -1,25 +1,40 @@
 from datetime import datetime
+from enum import unique
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.hashers import make_password, check_password
+
+# from delivery.models import Credits
 from restaurants.models import Restaurant
 
 
 class Client(models.Model):
     GENDER_CHOICES = [
-        ('male', 'Male'),
-        ('female', 'Female'),
+        ("male", "Male"),
+        ("female", "Female"),
     ]
 
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True, blank=True, null=True)
     phone = models.CharField(max_length=15, unique=True)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, blank=True, null=True)
-    address = models.CharField(max_length=100, blank=True, null=True)
+    gender = models.CharField(
+        max_length=6, choices=GENDER_CHOICES, blank=True, null=True
+    )
 
-    profile_image = models.ImageField(upload_to='client_profiles/', blank=True, null=True)
+    address_current = models.CharField(max_length=100, blank=True, null=True)
+    address_latitude = models.FloatField(null=True, blank=True)
+    address_longitude = models.FloatField(null=True, blank=True)
 
-    favourites = models.ManyToManyField(Restaurant, related_name='favourites', blank=True)
+    is_deliveryman = models.BooleanField(default=False)
+    is_approaved_by_admin = models.BooleanField(default=False)
+
+    profile_image = models.ImageField(
+        upload_to="client_profiles/", blank=True, null=True
+    )
+
+    favourites = models.ManyToManyField(
+        Restaurant, related_name="favourites", blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     password = models.CharField(max_length=255, blank=True, null=True, default="unset")
@@ -31,6 +46,9 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+    # def get_credits(self):
+    #     return Credits.objects.get(owner=self).amount
+
     def set_password(self, password):
         self.password = make_password(password)
 
@@ -40,7 +58,7 @@ class Client(models.Model):
         return check_password(password, self.password)
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
     def delete(self, *args, **kwargs):
         if self.profile_image:
@@ -50,6 +68,7 @@ class Client(models.Model):
 
 def get_today():
     return datetime.now(settings.CAIRO_TZ).today()
+
 
 # class New(models.Model):
 #     title = models.CharField(max_length=100, blank=True, null=True)

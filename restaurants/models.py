@@ -83,12 +83,15 @@ class Order(models.Model):
     client = models.ForeignKey(
         "clients.Client", on_delete=models.CASCADE, related_name="orders"
     )
-    address = models.TextField(blank=True, null=True)
+    address_current = models.CharField(max_length=100, blank=True, null=True)
+    address_latitude = models.FloatField(null=True, blank=True)
+    address_longitude = models.FloatField(null=True, blank=True)
     status = models.CharField(
         max_length=20,
         choices=[
             ("pending", "Pending"),
             ("preparing", "Preparing"),
+            ("taken", "taken"),
             ("delivering", "Delivering"),
             ("completed", "Completed"),
             ("cancelled", "Cancelled"),
