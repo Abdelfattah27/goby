@@ -302,3 +302,70 @@ class ModeratorViewSet(ModelViewSet):
             user.delete()
             instance.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+        
+        
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from .forms import RestaurantSignUpForm, RestaurantLoginForm
+from django.contrib.auth.decorators import login_required
+from restaurants.models import Restaurant
+
+def restaurant_signup(request):
+    if request.method == 'POST':
+        form = RestaurantSignUpForm(request.POST)
+        if form.is_valid():
+            # Create user
+            user = form.save(commit=False)
+            user.is_restaurant = True  # Mark as restaurant
+            user.save()
+            
+            # Create restaurant
+            Restaurant.objects.create(
+                user=user,
+                name_ar=form.cleaned_data['restaurant_name'],
+                merchant_type=form.cleaned_data['merchant_type']
+            )
+            
+            messages.success(request, 'Registration successful! Your account is pending approval. We will contact you on WhatsApp soon.')
+            return redirect('restaurant_waiting_approval')
+    else:
+        form = RestaurantSignUpForm()
+    
+    return render(request, 'restaurant_signup.html', {'form': form})
+
+def restaurant_login(request):
+    if request.method == 'POST':
+        form = RestaurantLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            
+            user = authenticate(request, username=username, password=password)
+            
+            if user is not None:
+                if user.is_restaurant:
+                    if user.is_approaved_by_admin:
+                        login(request, user)
+                        return redirect('restaurant_dashboard')
+                    else:
+                        messages.warning(request, 'Your account is pending approval. Please wait for admin confirmation.')
+                        return redirect('restaurant_waiting_approval')
+                else:
+                    messages.error(request, 'This account is not registered as a restaurant.')
+            else:
+                messages.error(request, 'Invalid username or password.')
+    else:
+        form = RestaurantLoginForm()
+    
+    return render(request, 'restaurant_login.html', {'form': form})
+
+def restaurant_waiting_approval(request):
+    return render(request, 'restaurant_waiting_approval.html')
+
+@login_required
+def restaurant_dashboard(request):
+    if not (request.user.is_restaurant and request.user.is_approaved_by_admin):
+        messages.error(request, 'You do not have access to this page.')
+        return redirect('index')
+    return redirect("/admin/")

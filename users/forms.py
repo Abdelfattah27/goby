@@ -16,3 +16,22 @@ class UserAdminForm(UserAdmin):
         (None, {'fields': ['username', 'password1', 'password2', 'name', 'phone', 'national_id', 'is_active',
                            'is_moderator', 'is_superuser']}),
     ]
+
+
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from .models import User
+from restaurants.models import Restaurant
+
+class RestaurantSignUpForm(UserCreationForm):
+    phone = forms.CharField(max_length=20, required=True, help_text="Required for contact")
+    restaurant_name = forms.CharField(max_length=100, required=True)
+    merchant_type = forms.ChoiceField(choices=Restaurant.MERCHANT_CHOICES, required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'phone', 'password1', 'password2']
+
+class RestaurantLoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)

@@ -58,7 +58,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('name', 'gander', 'nationality', 'phone', 'city', 
                    'district', 'emp_type', 'photo_preview')
     list_filter = ('gander', 'nationality', 'city', 'emp_type')
-    search_fields = ('name', 'phone', 'phone2', 'national_id', 'email')
+    search_fields = ('name', 'phone', 'phone2', 'national_id')
     fieldsets = (
         ('Personal Information', {
             'fields': ('name', 'gander', 'birth_date', 'age', 'photo', 'photo_preview')
@@ -67,7 +67,7 @@ class EmployeeAdmin(admin.ModelAdmin):
             'fields': ('nationality', 'religion', 'marital_status', 'national_id')
         }),
         ('Contact Information', {
-            'fields': ('phone', 'phone2', 'email', 'city', 'district', 'address')
+            'fields': ('phone', 'phone2', 'city', 'district', 'address')
         }),
         ('Employment Information', {
             'fields': ('emp_type', 'added_by')

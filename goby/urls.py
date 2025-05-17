@@ -7,13 +7,15 @@ from .auth_views import CustomAsyncTokenObtainPairView, CustomAsyncTokenRefreshV
 from users.views import get_authenticated_user
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+from users import views as user_views
 from . import views
 urlpatterns = [
-    path("",views.landing ,name="landing"),
+    path("",views.landing ,name="index"),
     path("for-restaurants/",views.for_restaurants ,name="for-restaurants"),
     path("privacy-policy/",views.privacy_policy ,name="privacy-policy"),
     path("terms-of-service/",views.terms_of_service ,name="terms-of-service"),
-    path("auth/",views.login ,name="login-signup"),
+    # path("auth/",views.login ,name="login-signup"),
     path("admin/", admin.site.urls),
     # path('api/gym-data/', include('gym_data.urls')),
     path("api/users/", include("users.urls")),
@@ -40,6 +42,10 @@ urlpatterns = [
         name="swagger-ui",
     ),
     
+    path('signup/', user_views.restaurant_signup, name='restaurant_signup'),
+    path('login/', user_views.restaurant_login, name='restaurant_login'),
+    path('waiting/', user_views.restaurant_waiting_approval, name='restaurant_waiting_approval'),
+    path('dashboard/', user_views.restaurant_dashboard, name='restaurant_dashboard'),
     
 ]
 
