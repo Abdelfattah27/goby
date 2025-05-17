@@ -1,0 +1,165 @@
+{% extends 'layout.html' %}
+{% block extra_css %}
+/* Restaurant Info Section - matches layout style */
+.restaurant-info {
+    padding: 7rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.restaurant-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-orange);
+    text-align: center;
+}
+
+/* Benefits Section */
+.restaurant-info .benefits {
+    margin-bottom: 3rem;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.restaurant-info .benefits h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    position: relative;
+}
+
+.restaurant-info .benefits h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-orange);
+}
+
+.restaurant-info .benefits ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+    line-height: 1.6;
+}
+
+.restaurant-info .benefits li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+/* How It Works Section */
+.restaurant-info .how-it-works {
+    margin-bottom: 3rem;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.restaurant-info .how-it-works h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    position: relative;
+}
+
+.restaurant-info .how-it-works h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-orange);
+}
+
+.restaurant-info .how-it-works ol {
+    list-style-type: decimal;
+    padding-left: 2rem;
+    line-height: 1.6;
+}
+
+.restaurant-info .how-it-works li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+/* CTA Section */
+.restaurant-info .cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.restaurant-info .cta .btn-solid {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.restaurant-info .cta .btn-solid:hover {
+    background-color: var(--dark-orange);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.restaurant-info .cta p {
+    margin-top: 1rem;
+    color: var(--dark);
+}
+
+.restaurant-info .cta a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.restaurant-info .cta a:hover {
+    color: var(--dark-orange);
+    text-decoration: underline;
+}
+{% endblock %}
+{% block content %}
+
+    <section class="restaurant-info" style="">
+        <h1 style="font-size: 2.5rem; margin-bottom: 2rem; color: var(--primary-orange);">Join GOBY's Restaurant Network</h1>
+        
+        <div class="benefits" style="margin-bottom: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Why Partner With GOBY?</h2>
+            <ul style="list-style-type: disc; padding-left: 2rem; line-height: 1.6;">
+                <li style="margin-bottom: 1rem;">Reach thousands of hungry customers in your area</li>
+                <li style="margin-bottom: 1rem;">Increase your sales with our large customer base</li>
+                <li style="margin-bottom: 1rem;">Easy-to-use platform for managing orders</li>
+                <li style="margin-bottom: 1rem;">Professional delivery partners to handle logistics</li>
+                <li style="margin-bottom: 1rem;">Marketing support to promote your restaurant</li>
+            </ul>
+        </div>
+
+        <div class="how-it-works" style="margin-bottom: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">How It Works</h2>
+            <ol style="list-style-type: decimal; padding-left: 2rem; line-height: 1.6;">
+                <li style="margin-bottom: 1rem;">Sign up and create your restaurant profile</li>
+                <li style="margin-bottom: 1rem;">Upload your menu with prices and images</li>
+                <li style="margin-bottom: 1rem;">Set your operating hours and delivery zones</li>
+                <li style="margin-bottom: 1rem;">Start receiving orders from customers</li>
+            </ol>
+        </div>
+
+        <div class="cta" style="text-align: center;">
+            <a href="/auth" class="btn btn-solid" style="font-size: 1.2rem; padding: 1rem 2rem;">Join Now</a>
+            <p style="margin-top: 1rem;">or <a href="/contact" style="color: var(--primary-orange);">contact our sales team</a></p>
+        </div>
+    </section>
+
+
+{% endblock %}

@@ -51,6 +51,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_moderator = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_root = models.BooleanField(default=False)
+    
+    is_restaurant = models.BooleanField(default=False)
+    
 
     objects = UserManager()
 

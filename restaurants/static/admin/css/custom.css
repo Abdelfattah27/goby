@@ -1,0 +1,46 @@
+
+.image_previewer_wrapper{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.image_preview{
+  max-width: 50%;
+  text-align: center;
+  max-height: 200px;
+
+}
+.file-input-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.file-input {
+  display: none;
+}
+
+.custom-file-upload {
+  margin-top:10px ;
+  border: 1px solid #333;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #333;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-file-upload:hover {
+  background: var(--main-color);
+}
+
+/* Style the text inside the button */
+.file-button-text {
+  margin-right: 10px; /* Add some space between text and icon */
+}

@@ -16,6 +16,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+        'jazzmin' ,
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -53,7 +54,7 @@ ROOT_URLCONF = "goby.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -150,3 +151,148 @@ CORS_ALLOW_ALL_ORIGINS = True
 # proxy ssl headers
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
+
+import os
+
+
+# settings.py
+
+JAZZMIN_SETTINGS = {
+    # Title on the brand (19 chars max)
+    "site_title": "GOBY Admin",
+    
+    # Title on the login screen (19 chars max)
+    "site_header": "GOBY",
+    
+    # Logo to use for your site
+    "site_logo": "logo.jpg",
+    
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to GOBY Administration",
+    
+    # Copyright on the footer
+    "copyright": "GOBY Ltd",
+    
+    # Field name on user model that contains avatar/image
+    "user_avatar": None,
+    
+    # UI Tweaks
+    "show_ui_builder": True,
+    
+    # Menu icons
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "accounts.User": "fas fa-user-cog",
+        "accounts.Nationality": "fas fa-globe",
+        "accounts.MaritalStatus": "fas fa-heart",
+        "accounts.EmployeeType": "fas fa-briefcase",
+        "accounts.City": "fas fa-city",
+        "accounts.CityDistrict": "fas fa-map-marker-alt",
+        "accounts.Employee": "fas fa-user-tie",
+        "accounts.Moderator": "fas fa-user-shield",
+        "clients.Client": "fas fa-user",
+        "delivery.Delivery": "fas fa-truck",
+        "delivery.LocationHistory": "fas fa-map-marker-alt",
+        "delivery.Credits": "fas fa-coins",
+        "restaurant.MenuCategory": "fas fa-utensils",
+        "restaurant.Restaurant": "fas fa-store",
+        "restaurant.SliderItem": "fas fa-images",
+        "restaurant.MenuItem": "fas fa-hamburger",
+        "restaurant.Order": "fas fa-receipt",
+        "restaurant.OrderItem": "fas fa-list-ol",
+    },
+    
+    # Menu ordering
+    "order_with_respect_to": [
+        "accounts",
+        "clients",
+        "restaurant",
+        "delivery",
+        "auth",
+    ],
+    
+    # Custom links to append to app groups
+    "custom_links": {
+        "restaurant": [{
+            "name": "Make Announcement", 
+            "url": "make_announcement",
+            "icon": "fas fa-bullhorn",
+            "permissions": ["restaurant.view_restaurant"]
+        }]
+    },
+    
+    # Custom admin site title
+    "site_brand": "GOBY Administration",
+    
+    # Whether to display the side menu
+    "show_sidebar": True,
+    
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+    
+    # Hide these apps when generating side menu
+    "hide_apps": [],
+    
+    # Hide these models when generating side menu
+    "hide_models": ["auth.group"],
+    
+    # List of apps to base side menu ordering off of
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    
+    # Related modal configuration
+    "related_modal_active": True,
+    
+    # Custom CSS for admin site
+    "custom_css": None,
+    
+    # Custom JS for admin site
+    "custom_js": None,
+    
+    # Whether to show UI customizer on the sidebar
+    "show_ui_builder": True,
+    
+    # Change view template overrides
+    "changeform_format": "horizontal_tabs",
+    
+    # override change forms on a per modeladmin basis
+    "changeform_format_overrides": {
+        "auth.user": "collapsible", 
+        "auth.group": "vertical_tabs"
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-indigo",
+    "accent": "accent-olive",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-indigo",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": True,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": True,
+    "sidebar_nav_legacy_style": True,
+    "sidebar_nav_flat_style": False,
+    "theme": "litera",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    "actions_sticky_top": True
+}

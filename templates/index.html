@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Delicious Food <span>Delivered</span> To Your Doorstep</h1>
+            <p>Order from your favorite restaurants and get it delivered fast with GOBY. Discover amazing food options near you.</p>
+            <div class="hero-buttons">
+                <a href="/auth" class="btn btn-solid">Order Now</a>
+                <a href="https://play.google.com/store/apps/details?id=com.goby.app" class="app-download">
+                    <i class="fab fa-google-play"></i> Download App
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-title animate">
+            <h2>Why Choose GOBY?</h2>
+            <p>We provide the best food delivery experience with our innovative platform</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Fast Delivery</h3>
+                <p>Get your food delivered in record time by our network of professional delivery partners.</p>
+            </div>
+            <div class="feature-card animate" style="transition-delay: 0.2s">
+                <div class="feature-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Variety of Restaurants</h3>
+                <p>Choose from hundreds of restaurants offering diverse cuisines to satisfy your cravings.</p>
+            </div>
+            <div class="feature-card animate" style="transition-delay: 0.4s">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Secure Payments</h3>
+                <p>Pay safely with our secure payment system that protects your financial information.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant CTA -->
+    <section class="restaurant-cta animate" id="restaurants">
+        <h2>Are You a Restaurant Owner?</h2>
+        <p>Join GOBY's network of restaurants and reach thousands of hungry customers in your area. Increase your sales with our powerful platform.</p>
+        <a href="/auth" class="btn btn-solid" style="background-color: var(--white); color: var(--primary-orange);">Join Our Restaurant Network</a>
+    </section>
+
+{% endblock %}

@@ -27,6 +27,7 @@ class Client(models.Model):
 
     is_deliveryman = models.BooleanField(default=False)
     is_approaved_by_admin = models.BooleanField(default=False)
+    
 
     profile_image = models.ImageField(
         upload_to="client_profiles/", blank=True, null=True

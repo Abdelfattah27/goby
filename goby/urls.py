@@ -7,8 +7,13 @@ from .auth_views import CustomAsyncTokenObtainPairView, CustomAsyncTokenRefreshV
 from users.views import get_authenticated_user
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-
+from . import views
 urlpatterns = [
+    path("",views.landing ,name="landing"),
+    path("for-restaurants/",views.for_restaurants ,name="for-restaurants"),
+    path("privacy-policy/",views.privacy_policy ,name="privacy-policy"),
+    path("terms-of-service/",views.terms_of_service ,name="terms-of-service"),
+    path("auth/",views.login ,name="login-signup"),
     path("admin/", admin.site.urls),
     # path('api/gym-data/', include('gym_data.urls')),
     path("api/users/", include("users.urls")),
@@ -34,6 +39,8 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
+    
+    
 ]
 
 if settings.DEBUG:
